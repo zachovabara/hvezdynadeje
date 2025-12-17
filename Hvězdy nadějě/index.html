@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hvězdy Naděje – Benefice pro litoměřický hospic</title>
+  <style>
+    body {
+      font-family: 'Open Sans', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at 20% 20%, #022244, #001020 80%);
+      color: #f0f4ff;
+      line-height: 1.7;
+      overflow-x: hidden;
+      position: relative;
+      min-height: 100vh;
+    }
+
+    /* === Hvězdné pozadí === */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        radial-gradient(2px 2px at 20% 30%, white, transparent),
+        radial-gradient(1.5px 1.5px at 60% 80%, #aee3ff, transparent),
+        radial-gradient(1px 1px at 90% 10%, #d6e9ff, transparent),
+        radial-gradient(2px 2px at 10% 70%, #cde5ff, transparent),
+        radial-gradient(1px 1px at 80% 50%, white, transparent);
+      background-repeat: no-repeat;
+      animation: twinkle 12s infinite alternate;
+      opacity: 0.4;
+      z-index: 0;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.3; transform: translateY(0px); }
+      100% { opacity: 0.7; transform: translateY(-10px); }
+    }
+
+    /* === Hlavicka === */
+    header {
+      position: relative;
+      background: linear-gradient(rgba(0, 15, 45, 0.75), rgba(0, 20, 60, 0.75)),
+                  url("hospic.jpg") center/cover no-repeat;
+      color: #e9f4ff;
+      text-align: center;
+      padding: 5rem 1rem 3rem;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+      z-index: 1;
+    }
+
+    header h1 {
+      font-size: 2.6rem;
+      margin-bottom: 0.3rem;
+      color: #b7dcff;
+      text-shadow: 0 0 10px rgba(150, 200, 255, 0.6);
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-bottom: 1.5rem;
+      opacity: 0.95;
+      color: #d9e8ff;
+    }
+
+    nav a {
+      color: #e9f4ff;
+      margin: 0 1rem;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s, transform 0.2s;
+    }
+
+    nav a:hover {
+      color: #ffe57f;
+      transform: scale(1.1);
+    }
+
+    /* === Sekce === */
+    section {
+      padding: 3rem 1.5rem;
+      max-width: 950px;
+      margin: auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    h2 {
+      color: #99d0ff;
+      border-bottom: 2px solid #99d0ff;
+      padding-bottom: 0.5rem;
+      margin-bottom: 1rem;
+      font-size: 1.9rem;
+      text-shadow: 0 0 8px rgba(120, 180, 255, 0.4);
+    }
+
+    p, li {
+      color: #f2f5ff;
+    }
+
+    /* === Galerie === */
+    .galerie {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .galerie div {
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(255, 255, 255, 0.05);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .galerie div:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(255, 255, 255, 0.1);
+    }
+
+    .galerie img {
+      width: 100%;
+      display: block;
+      filter: brightness(0.9);
+    }
+
+    .galerie p {
+      text-align: center;
+      margin: 0.5rem 0 1rem;
+      font-weight: 600;
+      color: #cfe4ff;
+    }
+
+    /* === Program === */
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    ul li {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 0.75rem 1rem;
+      border-left: 4px solid #77bfff;
+      margin-bottom: 0.7rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(255, 255, 255, 0.05);
+    }
+
+    /* === Odkazy === */
+    a {
+      color: #84c8ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: #ffe57f;
+      text-decoration: underline;
+    }
+
+    /* === Loga === */
+    .partneri {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+      padding: 2rem;
+      background: rgba(0, 20, 60, 0.7);
+      border-top: 1px solid #335b8a;
+    }
+
+    .partneri img {
+      max-height: 80px;
+      filter: brightness(0.9);
+      transition: transform 0.3s;
+    }
+
+    .partneri img:hover {
+      transform: scale(1.05);
+    }
+
+    footer {
+      text-align: center;
+      background: rgba(0, 10, 30, 0.9);
+      color: #cfe3ff;
+      padding: 1.5rem;
+      font-size: 0.95rem;
+      border-top: 1px solid #224b78;
+    }
+
+    @media (max-width: 600px) {
+      header h1 { font-size: 1.8rem; }
+      nav a { display: inline-block; margin: 0.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Hvězdy Naděje – Benefice pro litoměřický hospic</h1>
+    <p>Uměním pomáháme – podpořme společně Hospic sv. Štěpána 💙</p>
+    <nav>
+      <a href="#o-akci">O akci</a>
+      <a href="#obrazy">Obrazy</a>
+      <a href="#program">Program</a>
+      <a href="#hospic">Hospic</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </header>
+
+  <section id="o-akci">
+    <h2>O akci</h2>
+    <p>
+      Benefiční večer <strong>Hvězdy Naděje</strong> vznikl s cílem pomoci litoměřickému 
+      <a href="https://www.hospiclitomerice.cz/" target="_blank"><strong>Hospici sv. Štěpána</strong></a>.  
+      Spojuje svět umění, laskavosti a komunity – prostřednictvím dražby obrazů od regionálních umělců přispíváme 
+      na zajištění péče o nevyléčitelně nemocné a jejich rodiny.
+    </p>
+    <p><em>Tato akce je organizována studenty Gymnázia Jateční ve spolupráci s Činoherním studiem v Ústí nad Labem.</em></p>
+  </section>
+
+  <section id="obrazy">
+    <h2>Dražené obrazy</h2>
+    <div class="galerie">
+      <div><img src="KDC2.jpg" alt="Obraz 1"><p>Autor: Barbora Zachová</p></div>
+      <div><img src="kdc2-4.jpg" alt="Obraz 2"><p>Autor: Barbora Zachová</p></div>
+      <div><img src="kdc2-2.jpg" alt="Obraz 3"><p>Autor: Barbora Zachová</p></div>
+      <div><img src="srdce1.JPG" alt="Obraz 4"><p>Autor: Veronika Tylšová </p></div>
+      <div><img src="srdce2.JPG" alt="Obraz 5"><p>Autor: Veronika Tylšová </p></div>
+      <div><img src="slova1.JPG" alt="Obraz 6"><p>Autor: Eygon</p></div>
+      <div><img src="slova2.JPG" alt="Obraz 7"><p>Autor: Eygon </p></div>
+      <div><img src="mriz.JPG" alt="Obraz 8"><p>Autor: Vojtěch Povoloný </p></div>
+      <div><img src="srdce.JPG" alt="Obraz 9"><p>Autor: Eliška Svobodová </p></div>
+      <div><img src="abstrakce.JPG" alt="Obraz 10"><p>Autor: Veronika Tylšová </p></div>
+      <div><img src="par1.JPG" alt="Obraz 11"><p>Autor: Veronika Tylšová </p></div>
+      <div><img src="par2.JPG" alt="Obraz 12"><p>Autor: Daniel Tylš </p></div>
+      <div><img src="papir.JPG" alt="Obraz 13"><p>Autor: Eygon</p></div>
+      <div><img src="postavy.JPG" alt="Obraz 14"><p>Autor: Marie Dynterová </p></div>
+      <div><img src="cerno.JPG" alt="Obraz 15"><p>Autor: Veronika Tylšová </p></div>
+      <div><img src="obraz.JPG" alt="Obraz 16"><p>Autor: Jenda Petr </p></div>
+    </div>
+  </section>
+
+  <section id="program">
+    <h2>Program benefice</h2>
+    <ul>
+      <li>15:00 – Otevření divadla</li>
+      <li>16:00 – Zahájení benefice</li>
+      <li>16:30 – Kvíz</li>
+      <li>17:00 – Divadlo</li>
+      <li>18:00 – Aukce obrazů</li>
+      <li>2é:00 – Závěrečný koncert</li>
+    </ul>
+  </section>
+
+  <section id="hospic">
+    <h2>O Hospici sv. Štěpána</h2>
+    <p>
+      <a href="https://www.hospiclitomerice.cz/" target="_blank"><strong>Hospic sv. Štěpána</strong></a> 
+      v Litoměřicích poskytuje paliativní péči lidem v závěrečné fázi života.  
+      Nabízí důstojnost, lidskost a podporu rodinám v nelehkých chvílích.  
+      Každý dar pomáhá zajistit, aby jejich služby zůstaly dostupné všem, kdo je potřebují.
+    </p>
+  </section>
+
+  <section id="kontakt">
+    <h2>Kontakt a podpora</h2>
+    <p>
+      Chcete se zapojit nebo přispět na dobrou věc?<br>
+      📧 <a href="mailto: zachova.b@gymjat.cz ">zachova.b@gymjat.cz</a><br>
+      📧 <a href="mailto:dynterova.m@gymjat.cz">dynterova.m@gymjat.cz</a><br>
+      📧 <a href="mailto:kment@gymjat.cz">kment@gymjat.cz</a>
+    </p>
+  </section>
+
+  <footer>
+    © 2025 Hvězdy Naděje – Benefice pro litoměřický hospic |  
+    Akce studentů Gymnázia Jateční ve spolupráci s Činoherním studiem 💙
+  </footer>
+
+  <!-- Loga úplně dole -->
+  <div class="partneri">
+    <img src="hospic.png" alt="Hospic sv. Štěpána">
+    <img src="cropped-cs_logo_250902-1-11_page-0001.jpg" alt="Činoherní studio Ústí nad Labem">
+    <img src="Screenshot_2025-12-16-13-12-52-327-edit_com.google.android.googlequicksearchbox.jpg" alt="Gymnázium Jateční Ústí nad Labem">
+  </div>
+
+</body>
+</html>
